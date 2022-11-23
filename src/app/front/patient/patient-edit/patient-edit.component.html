@@ -1,0 +1,132 @@
+
+<div class="card card-warning">
+  <p-toast></p-toast>
+
+  <div class="card-header">
+    <h3 class="card-title">Modifier Patient</h3>
+  </div>
+
+
+
+  <div class="card-body" [hidden]="!det" >
+    <form role="form" [formGroup]="add">
+
+
+      <div class="form-group">
+        <label class="col-form-label" for="no"> Status </label>
+        <input type="text" class="form-control " [ngClass]="(this.add.controls.status.invalid) ? 'is-invalid' : 'is-valid'"   id="no" placeholder="Entrer ..." required="required" name="status" formControlName='status' >
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="pr"> Etat du patient</label>
+        <input type="text" class="form-control " [ngClass]="(this.add.controls.etatDuPatient.invalid) ? 'is-invalid' : 'is-valid'"   id="pr" placeholder="Entrer ..." required="required" name="etatDuPatient" formControlName='etatDuPatient' >
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="em"> Heure de prise en charge</label>
+        <input type="datetime-local" class="form-control " [ngClass]="(this.add.controls.heurePriseCharge.invalid) ? 'is-invalid' : 'is-valid'"   id="em" placeholder="Entrer ..." required="required" name="heurePriseCharge" formControlName='heurePriseCharge' >
+      </div>
+
+      <div class="form-group">
+        <label class="col-form-label" for="ph"> Service Affectation</label>
+        <input type="text" class="form-control " [ngClass]="(this.add.controls.serviceAffectation.invalid) ? 'is-invalid' : 'is-valid'"   id="ph" placeholder="Entrer ..." required="required" name="serviceAffectation" formControlName='serviceAffectation' >
+      </div>
+
+
+
+
+      <input type="submit" class="button-29" value=" Ajouter " style="margin-left: 35%" [disabled]='this.add.invalid' (click)="addDetailPatient(detailPatient) "/>
+      <button class="button-29" style="margin-left: 20px" (click)="this.det=false" >Annuler</button>
+    </form>
+  </div>
+
+
+
+
+  <button class="button-29" style="margin:1% 0% 0% 40%;width:15%;padding: 0px 0px 0px 0px "  (click)="this.det=true" [hidden]="det">Ajouter Details</button>
+
+  <div class="card-body" [hidden]="det">
+    <form role="form" [formGroup]="edit">
+
+
+      <div class="form-group">
+        <label class="col-form-label" for="us"> Nom</label>
+        <input type="text" class="form-control " [ngClass]="(this.edit.controls.nom.invalid) ? 'is-invalid' : 'is-valid'"   id="us" placeholder="Entrer ..." required="required" name="patient.nom" formControlName='nom' [(ngModel)]="patient.nom">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="no"> Prenom </label>
+        <input type="text" class="form-control " [ngClass]="(this.edit.controls.prenom.invalid) ? 'is-invalid' : 'is-valid'"   id="no" placeholder="Entrer ..." required="required" name="patient.prenom" formControlName='prenom' [(ngModel)]="patient.prenom">
+      </div>
+
+<div class="form-group">
+        <label class="col-form-label" for="no"> Email </label>
+        <input type="email" class="form-control " [ngClass]="(this.edit.controls.email.invalid) ? 'is-invalid' : 'is-valid'"   id="no" placeholder="Entrer ..." name="patient.email" formControlName='email' [(ngModel)]="patient.email">
+      </div>
+<div class="form-group">
+        <label class="col-form-label" for="no"> Domicile </label>
+        <input type="email" class="form-control " [ngClass]="(this.edit.controls.domicile.invalid) ? 'is-invalid' : 'is-valid'"   id="no" placeholder="Entrer ..." required="required" name="patient.domicile" formControlName='domicile' [(ngModel)]="patient.domicile">
+      </div>
+
+<div class="form-group">
+        <label class="col-form-label" for="no"> Photo </label>
+        <input type="text" class="form-control " [ngClass]="(this.edit.controls.photo.invalid) ? 'is-invalid' : 'is-valid'"   id="no" placeholder="Entrer ..." name="patient.photo" formControlName='photo' [(ngModel)]="patient.photo">
+      </div>
+
+<div class="form-group">
+        <label class="col-form-label" for="no"> CIN </label>
+        <input type="number" class="form-control " [ngClass]="(this.edit.controls.numIdendite.invalid) ? 'is-invalid' : 'is-valid'"   id="no" placeholder="Entrer ..." required="required" name="patient.numIdendite" formControlName='numIdendite' [(ngModel)]="patient.numIdendite">
+      </div>
+
+<div class="form-group">
+        <label class="col-form-label" for="no"> Date de naissance </label>
+        <input type="date" class="form-control " [ngClass]="(this.edit.controls.dateNaissance.invalid) ? 'is-invalid' : 'is-valid'"   id="no" placeholder="Entrer ..." required="required" name="patient.dateNaissance" formControlName='dateNaissance' [(ngModel)]="patient.dateNaissance">
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+
+          <div class="form-group">
+            <label>Genre</label>
+            <select class="form-control" formControlName='genre' [(ngModel)]="patient.genre">
+              <option [defaultSelected]="true"   >Homme</option>
+              <option  >Femme</option>
+
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="row">
+        <div class="col-sm-6">
+
+          <div class="form-group">
+            <label>est Assuré :</label>
+            <select class="form-control" formControlName='assure' [(ngModel)]="patient.estAssure">
+              <option  [defaultSelected]="true" [ngValue]="true" >Oui</option>
+              <option [ngValue]="false" >Non</option>
+
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group" *ngIf="patient.estAssure">
+        <label class="col-form-label" for="no11"> Taux Assurance </label>
+        <input type="number" class="form-control " [ngClass]="(this.edit.controls.tauxAssurance.invalid) ? 'is-invalid' : 'is-valid'"   id="no11" placeholder="Entrer ..."  name="patient.tauxAssurance" formControlName='tauxAssurance' [(ngModel)]="patient.tauxAssurance">
+      </div>
+
+
+      <div class="form-group" *ngIf="patient.estAssure">
+        <label class="col-form-label" for="no12"> Numéro D'Affiliation </label>
+        <input type="number" class="form-control " [ngClass]="(this.edit.controls.numAffeliation.invalid) ? 'is-invalid' : 'is-valid'"   id="no12" placeholder="Entrer ..."  name="patient.numAffeliation" formControlName='numAffeliation' [(ngModel)]="patient.numAffeliation">
+      </div>
+
+      <input type="submit" class="button-29" value=" Modifier " style="margin-left: 40%" [disabled]='edit.invalid' (click)="editPatient(patient)"/>
+      <button class="button-29" style="margin-left: 10px" [routerLink]="['../../']" >Retour</button>
+    </form>
+  </div>
+
+</div>
