@@ -29,8 +29,9 @@ pipeline {
             steps {
 
                withCredentials([string(credentialsId: 'dockerhub_cred', variable: 'dockerhub')]) {
+                  echo " login dockerhub "
                   sh ' docker login -u youssefpfe -p ${dockerhub} '
-                  ech " pushing to dockerhub"
+                  echo " pushing to dockerhub"
                   sh ' docker push youssefpfe/pfeapps:frontend.$BUILD_ID '
                } 
                 
